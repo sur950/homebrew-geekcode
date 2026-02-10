@@ -12,7 +12,9 @@ class Geekcode < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install buildpath
+    # Use pip with full dependency resolution (not --no-deps)
+    system Formula["python@3.12"].opt_bin/"python3.12", "-m", "pip",
+           "--python=#{libexec}/bin/python", "install", "--no-cache-dir", buildpath
     bin.install_symlink libexec/"bin/geekcode"
   end
 
