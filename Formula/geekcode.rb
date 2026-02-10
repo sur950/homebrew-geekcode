@@ -11,9 +11,8 @@ class Geekcode < Formula
   depends_on "python@3.12"
 
   def install
-    virtualenv_create(libexec, "python3.12")
-    system libexec/"bin/pip", "install", "--no-cache-dir", "."
-    bin.install_symlink libexec/"bin/geekcode"
+    venv = virtualenv_create(libexec, "python3.12")
+    venv.pip_install buildpath
   end
 
   def caveats
