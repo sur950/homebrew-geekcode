@@ -13,6 +13,7 @@ class Geekcode < Formula
   def install
     venv = virtualenv_create(libexec, "python3.12")
     venv.pip_install buildpath
+    bin.install_symlink libexec/"bin/geekcode"
   end
 
   def caveats
